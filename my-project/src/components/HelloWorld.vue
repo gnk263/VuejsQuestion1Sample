@@ -1,6 +1,15 @@
 <template>
   <div class="container">
 
+    <form>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" v-on:click.stop.prevent="testMethod">てすと</button>
+      </div>
+    </form>
+
+    <p>{{ hoge }}</p>
+    <p>{{ fuga }}</p>
+
   </div>
 </template>
 
@@ -9,6 +18,21 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      hoge: '',
+    }
+  },
+  methods: {
+    testMethod() {
+      this.hoge = 'test message'
+      this.fuga = [
+        {'id': '111', 'text':'aaa'},
+        {'id': '222', 'text':'bbb'},
+        {'id': '333', 'text':'ccc'},
+      ]
+    }
   }
 }
 </script>
