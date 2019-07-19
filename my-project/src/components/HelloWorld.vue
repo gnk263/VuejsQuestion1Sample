@@ -5,10 +5,19 @@
       <div class="form-group">
         <button type="button" class="btn btn-primary" v-on:click.stop.prevent="testMethod">てすと</button>
       </div>
+
+      <div class="form-group">
+        <select multiple v-model="userSelected">
+          <option v-for="(group, key, index) in groups" :key="index" v-bind:value="group.id">
+            {{ group.text }}
+          </option>
+        </select>
+      </div>
     </form>
 
     <p>{{ hoge }}</p>
     <p>{{ fuga }}</p>
+    <p>userSelected: {{ userSelected }}</p>
 
   </div>
 </template>
@@ -22,16 +31,23 @@ export default {
   data() {
     return {
       hoge: '',
+      fuga: '',
+      userSelected: '',
+      groups: [],
     }
   },
   methods: {
     testMethod() {
       this.hoge = 'test message'
-      this.fuga = [
+
+      const groups = [
         {'id': '111', 'text':'aaa'},
         {'id': '222', 'text':'bbb'},
         {'id': '333', 'text':'ccc'},
       ]
+
+      this.groups = groups
+      this.fuga = groups
     }
   }
 }
