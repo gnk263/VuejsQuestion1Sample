@@ -23,6 +23,19 @@
 </template>
 
 <script>
+export function testPromise() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      resolve([
+        {'id': '111', 'text':'aaa'},
+        {'id': '222', 'text':'bbb'},
+        {'id': '333', 'text':'ccc'},
+      ])
+    }, 5000);
+  })
+}
+
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -37,14 +50,16 @@ export default {
     }
   },
   methods: {
-    testMethod() {
+    async testMethod() {
       this.hoge = 'test message'
 
-      const groups = [
-        {'id': '111', 'text':'aaa'},
-        {'id': '222', 'text':'bbb'},
-        {'id': '333', 'text':'ccc'},
-      ]
+      // const groups = [
+      //   {'id': '111', 'text':'aaa'},
+      //   {'id': '222', 'text':'bbb'},
+      //   {'id': '333', 'text':'ccc'},
+      // ]
+
+      const groups = await testPromise()
 
       this.groups = groups
       this.fuga = groups
